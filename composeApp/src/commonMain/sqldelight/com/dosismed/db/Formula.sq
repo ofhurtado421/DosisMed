@@ -1,0 +1,35 @@
+CREATE TABLE Formula (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    padecimiento TEXT NOT NULL,
+    sintomas TEXT NOT NULL,
+    medicamentos TEXT NOT NULL,
+    descripcion TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Formula ORDER BY padecimiento COLLATE NOCASE;
+
+selectById:
+SELECT * FROM Formula WHERE id = :id;
+
+search:
+SELECT * FROM Formula
+WHERE padecimiento LIKE ('%' || :q || '%')
+   OR sintomas LIKE ('%' || :q || '%')
+   OR medicamentos LIKE ('%' || :q || '%')
+ORDER BY padecimiento COLLATE NOCASE;
+
+insert:
+INSERT INTO Formula(padecimiento, sintomas, medicamentos, descripcion)
+VALUES (:padecimiento, :sintomas, :medicamentos, :descripcion);
+
+update:
+UPDATE Formula
+SET padecimiento = :padecimiento, sintomas = :sintomas, medicamentos = :medicamentos, descripcion = :descripcion
+WHERE id = :id;
+
+deleteById:
+DELETE FROM Formula WHERE id = :id;
+
+count:
+SELECT count(*) FROM Formula;

@@ -1,0 +1,43 @@
+CREATE TABLE Medicamento (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    forma TEXT NOT NULL,
+    poblacion TEXT NOT NULL,
+    concentracionMg REAL NOT NULL,
+    volumenReferenciaMl REAL NOT NULL,
+    dosisMgPorKgMin REAL NOT NULL,
+    dosisMgPorKgMax REAL NOT NULL,
+    frecuenciaHorasMin INTEGER NOT NULL,
+    frecuenciaHorasMax INTEGER NOT NULL,
+    maxDosisDia INTEGER NOT NULL,
+    recomendaciones TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Medicamento ORDER BY nombre COLLATE NOCASE;
+
+selectById:
+SELECT * FROM Medicamento WHERE id = :id;
+
+insert:
+INSERT INTO Medicamento(nombre, tipo, forma, poblacion, concentracionMg, volumenReferenciaMl, dosisMgPorKgMin, dosisMgPorKgMax, frecuenciaHorasMin, frecuenciaHorasMax, maxDosisDia, recomendaciones)
+VALUES (:nombre, :tipo, :forma, :poblacion, :concentracionMg, :volumenReferenciaMl, :dosisMgPorKgMin, :dosisMgPorKgMax, :frecuenciaHorasMin, :frecuenciaHorasMax, :maxDosisDia, :recomendaciones);
+
+update:
+UPDATE Medicamento
+SET nombre = :nombre, tipo = :tipo, forma = :forma, poblacion = :poblacion,
+    concentracionMg = :concentracionMg, volumenReferenciaMl = :volumenReferenciaMl,
+    dosisMgPorKgMin = :dosisMgPorKgMin, dosisMgPorKgMax = :dosisMgPorKgMax,
+    frecuenciaHorasMin = :frecuenciaHorasMin, frecuenciaHorasMax = :frecuenciaHorasMax,
+    maxDosisDia = :maxDosisDia, recomendaciones = :recomendaciones
+WHERE id = :id;
+
+deleteById:
+DELETE FROM Medicamento WHERE id = :id;
+
+count:
+SELECT count(*) FROM Medicamento;
+
+lastInsertId:
+SELECT last_insert_rowid();
