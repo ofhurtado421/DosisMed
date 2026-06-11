@@ -30,9 +30,6 @@ Proyecto académico de: **Deimar Quiñonez** y **Oscar Fabian Hurtado Hueje**.
 - Usuario: `admin`
 - Contraseña: `1234`
 
-La app viene con **datos de ejemplo precargados** (Acetaminofén, Ibuprofeno,
-Amoxicilina, Loratadina y tres fórmulas) para poder probarla de inmediato.
-
 ---
 
 ## Cómo funciona el cálculo de dosis
@@ -83,50 +80,6 @@ composeApp/
 
 ---
 
-## Requisitos
-
-- **JDK 17** o superior.
-- **Android Studio** (versión reciente) con el **plugin de Kotlin Multiplatform**
-  instalado, o **IntelliJ IDEA**.
-- Para Android: un emulador o dispositivo con **Android 7.0 (API 24)** o superior.
-
----
-
-## Cómo abrir y ejecutar
-
-### Opción A — Abrir el proyecto incluido (recomendado)
-
-1. Abre la carpeta `DosisMed` en **Android Studio** o **IntelliJ IDEA**
-   (*File → Open*) y deja que sincronice Gradle.
-2. **Ejecutar en Android:** selecciona la configuración del módulo `composeApp`
-   y un emulador/dispositivo, y pulsa *Run*.
-3. **Ejecutar en Escritorio** desde la terminal:
-   ```bash
-   ./gradlew :composeApp:run
-   ```
-4. **Generar instalador de escritorio** (.dmg / .msi / .deb):
-   ```bash
-   ./gradlew :composeApp:packageDistributionForCurrentOS
-   ```
-
-> El proyecto incluye el *Gradle Wrapper* (`./gradlew`), por lo que no necesitas
-> instalar Gradle manualmente.
-
-### Opción B — Plan B si hay problemas de sincronización o de versiones
-
-Como las versiones de KMP/Compose cambian con frecuencia, si el *sync* falla por
-un desajuste de versiones, la forma más segura es:
-
-1. Generar un proyecto base nuevo con el **asistente oficial de Kotlin Multiplatform**
-   en <https://kmp.jetbrains.com> (o el wizard del IDE), marcando **Android** y
-   **Desktop** como objetivos. Esto garantiza versiones compatibles y el wrapper.
-2. Copiar dentro de ese proyecto la carpeta `composeApp/src` de este repositorio
-   (sobrescribiendo la generada).
-3. Añadir al `composeApp/build.gradle.kts` las dependencias y plugins que aparecen
-   en `gradle/libs.versions.toml` de este proyecto (navigation-compose, SQLDelight,
-   kotlinx-serialization, kotlinx-coroutines), y el bloque `sqldelight { ... }`.
-
----
 
 ## Versiones usadas
 
@@ -143,25 +96,4 @@ un desajuste de versiones, la forma más segura es:
 | compileSdk / targetSdk   | 35             |
 | minSdk                   | 24             |
 
-Todas las versiones están centralizadas en **`gradle/libs.versions.toml`**; si
-necesitas actualizar alguna, edítala ahí.
 
----
-
-## Nota sobre Voyager
-
-Inicialmente se evaluó **Voyager** para la navegación, pero su última versión
-estable es de hace más de un año y el último artefacto disponible está compilado
-contra Kotlin 1.9, lo que genera riesgo de incompatibilidad con el toolchain actual
-(Compose Multiplatform 1.11 / Kotlin 2.2). Por eso se usó la **navegación oficial de
-JetBrains**, que está mantenida, vive en `commonMain` y cumple igual el requisito de
-gestionar la navegación en la capa compartida.
-
----
-
-## Créditos
-
-- **Deimar Quiñonez**
-- **Oscar Fabian Hurtado Hueje**
-
-Proyecto académico — Kotlin Multiplatform (Android + Desktop).
